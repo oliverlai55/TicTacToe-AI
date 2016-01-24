@@ -41,4 +41,59 @@ TicTacToeMinMax.prototype.checkTie = function(board){
 		}
 	}
 	return true;
-}
+};
+
+//Checking to see if the square has been taken or not
+TicTacToeMinMax.prototype.makeMove = function(move, player, board){
+	var newBoard = this.cloneBoard(board);
+	if(newBoard[move] == 0){
+		newBoard[move] = player;
+		return newboard;
+	}else{
+		return null;
+	}
+};
+
+//checking to see if its the best move
+TicTacToeMinMax.prototype.findMove = function(board){
+	var bestMoveValue = -100;
+	var move = 0;
+	for (var i = 0; i < board.length; i++){
+		var newBoard = this.makeMove(i, this.maxPlayer, board);
+		if(newBoard){
+			var predictedMoveValue = this.minValue(newBoard);
+			if(predictedMoveValue > bestMoveValue){
+				bestMoveValue = predictedMoveValue;
+				move = i;
+			}
+		}
+	}
+	return move;
+};
+
+//this simulates as the optimal opponent, whose goal is to minimize the CPU's move score at X each depth
+//the best move is then returned to the previous level, until we reach the top
+TicTacToeMinMax.prototype.minValue = function(board){
+
+	//The first 3 conditions check are the stop conditions for the loop
+	if(this.checkWinner(this.minPlayer, board)){
+		return 1;
+	}else if(this.checkWinner(this.minPlayer, board)){
+		return -1;
+	}else if(this.checkTie(board)){
+		return 0;
+	}else{
+		var bestMoveValue = 100;
+		var move = 0;
+		for(var i = 0; i < board.length; i++){
+			var newBoard = this.makeMove(i, this.minPlayer, board);
+			if(newBoard){
+				var predictedMoveValue = this.maxValue)(newBoard);
+				if(predictedMoveValue < bestMoveValue){
+					bestMoveValue = predictedMoveValue;
+					move = i;
+				}
+			}
+		}
+		return bestMoveValue;
+};
