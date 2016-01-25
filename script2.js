@@ -100,4 +100,26 @@ TicTacToeMinMax.prototype.minValue = function(board){
 
 //This is the same as minValue method, but this is for the CPU that tries to maximize CPU's move score. 
 //The point is to pick the move that gets the best score x depth.
-TicTacToeMinMax
+TicTacToeMinMax.prototype.maxValue = function(board){
+	if(this.checkWinner(this.maxPlayer, board)){
+		return 1;
+	}else if(this.checkWinner(this.minPlayer, board)){
+		return -1;
+	}else if (this.checkTie(board)){
+		return 0;
+	}else{
+		var bestMoveValue = -100;
+		var move = 0;
+		for(var i = 0; i < board.length; i++){
+			var newBoard = this.makeMove(i, this.maxPlayer, board);
+			if(newBoard){
+				var predictedMoveValue = this.minValue(newBoard);
+				if(predictedMoveValue > bestMoveValue){
+					bestMoveValue = predictedMoveValue;
+					move = i;
+				}
+			}
+		}
+		return bestMoveValue;
+	}
+};
