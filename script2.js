@@ -76,7 +76,7 @@ TicTacToeMinMax.prototype.findMove = function(board){
 TicTacToeMinMax.prototype.minValue = function(board){
 
 	//The first 3 conditions check are the stop conditions for the loop
-	if(this.checkWinner(this.minPlayer, board)){
+	if(this.checkWinner(this.maxPlayer, board)){
 		return 1;
 	}else if(this.checkWinner(this.minPlayer, board)){
 		return -1;
@@ -88,7 +88,7 @@ TicTacToeMinMax.prototype.minValue = function(board){
 		for(var i = 0; i < board.length; i++){
 			var newBoard = this.makeMove(i, this.minPlayer, board);
 			if(newBoard){
-				var predictedMoveValue = this.maxValue)(newBoard);
+				var predictedMoveValue = this.maxValue(newBoard);
 				if(predictedMoveValue < bestMoveValue){
 					bestMoveValue = predictedMoveValue;
 					move = i;
@@ -97,3 +97,7 @@ TicTacToeMinMax.prototype.minValue = function(board){
 		}
 		return bestMoveValue;
 };
+
+//This is the same as minValue method, but this is for the CPU that tries to maximize CPU's move score. 
+//The point is to pick the move that gets the best score x depth.
+TicTacToeMinMax
