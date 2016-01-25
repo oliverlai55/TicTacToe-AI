@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 
 
 
@@ -70,15 +72,18 @@ function winner(board) {
         if (player != board[index]) player = 0;
       }
       if (player != 0) return player;
+
     }
   }
   return 0;
+
 }
 
 function pickrandom(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function checkWin(){
-  
-}
+
+
+
+});
