@@ -24,11 +24,11 @@
         if (result && result.winner == false && result.tie == false &&
             this.state.aiPlayers[this.state.turn]) {
             this.handleAiMove();
-        }
-    };
+    }
+};
 
-    TicTacToe.prototype.handleAiMove = function() {
-        if (this.state.aiPlayers[this.state.turn]) {
+TicTacToe.prototype.handleAiMove = function() {
+    if (this.state.aiPlayers[this.state.turn]) {
 
             // TODO(richard-to): Handle second player turn
             this.ai.setMinMaxPlayers(
@@ -71,34 +71,34 @@
     TicTacToe.prototype.checkWinner = function(player) {
         var tiles = this.state.tiles;
         if (
-                (tiles[0] == player && tiles[1] == player && tiles[2] == player) ||
-                (tiles[3] == player && tiles[4] == player && tiles[5] == player) ||
-                (tiles[6] == player && tiles[7] == player && tiles[8] == player) ||
-                (tiles[0] == player && tiles[3] == player && tiles[6] == player) ||
-                (tiles[1] == player && tiles[4] == player && tiles[7] == player) ||
-                (tiles[2] == player && tiles[5] == player && tiles[8] == player) ||
-                (tiles[0] == player && tiles[4] == player && tiles[8] == player) ||
-                (tiles[2] == player && tiles[4] == player && tiles[6] == player)
+            (tiles[0] == player && tiles[1] == player && tiles[2] == player) ||
+            (tiles[3] == player && tiles[4] == player && tiles[5] == player) ||
+            (tiles[6] == player && tiles[7] == player && tiles[8] == player) ||
+            (tiles[0] == player && tiles[3] == player && tiles[6] == player) ||
+            (tiles[1] == player && tiles[4] == player && tiles[7] == player) ||
+            (tiles[2] == player && tiles[5] == player && tiles[8] == player) ||
+            (tiles[0] == player && tiles[4] == player && tiles[8] == player) ||
+            (tiles[2] == player && tiles[4] == player && tiles[6] == player)
             ) {
             return true;
-        } else {
-           return false;
-        }
-    };
+    } else {
+     return false;
+ }
+};
 
-    TicTacToe.prototype.checkTie = function() {
-        var tiles = this.state.tiles;
-        for (var i = 0; i < tiles.length; i++) {
-            if (tiles[i] == 0) {
-                return false;
-            }
+TicTacToe.prototype.checkTie = function() {
+    var tiles = this.state.tiles;
+    for (var i = 0; i < tiles.length; i++) {
+        if (tiles[i] == 0) {
+            return false;
         }
-        return true;
-    };
+    }
+    return true;
+};
 
-    TicTacToe.prototype.nextTurn = function() {
-        this.state.turn = (this.state.turn + 1) % this.state.players.length;
-    };
+TicTacToe.prototype.nextTurn = function() {
+    this.state.turn = (this.state.turn + 1) % this.state.players.length;
+};
 
     // Click Event Handler. Returns a result object that
     // acts like view model that tells describes how to update
@@ -152,11 +152,11 @@
 
     // Remove events handlers from tile
     TicTacToeUI.prototype.removeTileListeners = function() {
-         for (var i = 0; i < this.tileEls.length; i++) {
-            var tile = this.tileEls[i].cloneNode(true);
-            this.tileEls[i].parentNode.replaceChild(tile, this.tileEls[i]);
-         }
-    };
+       for (var i = 0; i < this.tileEls.length; i++) {
+        var tile = this.tileEls[i].cloneNode(true);
+        this.tileEls[i].parentNode.replaceChild(tile, this.tileEls[i]);
+    }
+};
 
     // Update the UI based on result view model
     TicTacToeUI.prototype.update = function(result) {
@@ -230,10 +230,10 @@
             (board[2] == player && board[4] == player && board[6] == player)
             ) {
             return true;
-        } else {
-            return false;
-        }
-    };
+    } else {
+        return false;
+    }
+};
 
     // Use separate implementation of check tie here for more portability.
     // Most likely will use web workers here
